@@ -3,12 +3,12 @@ import random
 import matplotlib.pyplot as plot
 
 points = [(4, 2), (2, 1), (6, 4), (4, 2), (6, 9), (7, 2), (5, 6), (10, 8), (17, 9), (9, 8)]
-plotPoints(points)
+plotPoints(points, 'green')
 covarianceMatrix = covarianceMatrix(points)
 eigenVector, eigenValue = eigen(covarianceMatrix)
-plot.arrow(0, 0, eigenVector[0]*eigenValue, eigenVector[1]*eigenValue)
+plot.arrow(0, 0, eigenVector[0]*20, eigenVector[1]*20)
 projectedPoints = project(points, eigenVector)
-plotPoints(projectedPoints, 'red')
+plotPoints(projectedPoints, 'blue')
 plot.show()
 plot.close()
 
@@ -66,6 +66,6 @@ def project(l, v):
         res.append((dot * v[0], dot * v[1]))
     return res
 
-def plotPoints(l, c='blue'):
-    x, y = zip(*l)
-    plot.scatter(x, y, color=c)
+def plotPoints(listValues, plotColor):
+    x, y = zip(*listValues)
+    plot.scatter(x, y, color=plotColor)
